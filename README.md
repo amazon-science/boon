@@ -3,8 +3,8 @@
 ![Image](resources/operator_bdy.png)
 
 Nadim Saad*, Gaurav Gupta*, Shima Alizadeh, Danielle C. Maddix\
-**Guiding continuous operator learning through Physics-based boundary constraints**\
-[arXiv:2212.07477](https://arxiv.org/abs/2212.07477)\
+**Guiding continuous operator learning through Physics-based boundary constraints,**\
+[International Conference on Learning Representations](https://openreview.net/forum?id=gfWNItGOES6), 2023\
 (*equal contribution authors)
 
 
@@ -31,11 +31,10 @@ A complete pipeline is shown for the 2D time-varying PDE with Dirichlet boundary
 ## Citation
 If you use this code, or our work, please cite:
 ```
-@misc{saad2022BOON,
+@inproceedings{saad2022BOON,
   author = {Saad, Nadim and Gupta, Gaurav and Alizadeh, Shima and Maddix, Danielle C.},
   title = {Guiding continuous operator learning through Physics-based boundary constraints},
-  publisher = {arXiv},
-  year = {2022},
-  doi = {10.48550/ARXIV.2212.07477},
+  booktitle={International Conference on Learning Representations},
+  year={2023},
 }
 ```
