@@ -33,7 +33,7 @@ As an example, a complete pipeline is shown for the 1D time-varying PDE with Dir
 
 ![Image](resources/stokes.png)
 
-### lid-Cavity flow (Navier-Stokes)
+### 2D Navier-Stokes lid-driven cavity flow
 A complete pipeline is shown for the 2D time-varying PDE with Dirichlet boundary condition in the attached `examples_3d_multi_step.ipynb` notebook.
 
 https://user-images.githubusercontent.com/19197210/217733438-211a4499-d2b3-4830-8bba-2d3d7ad5dfb3.mp4
