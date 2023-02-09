@@ -22,11 +22,28 @@ Generate the data using the scripts provided in the 'Data' directory. The script
 ### Scripts
 Detailed notebooks for reproducing all the experiments in the paper are provided. The cases of 1D, 1D time-varying, 2D time-varying are shown in the respective notebooks for all the three boundary conditions of Dirichlet, Neumann, and Periodic.
 
+### 1D Heat equation motivating example
+As an example, a complete pipeline is shown for the 1D single-step PDE with Neumann boundary condition in the attached `examples_1d_single_step.ipynb` notebook. 
+
+![Image](resources/heat_neumann.png) \
+**Non-physical solution**: Nonzero flux suggests heat flow through an insulator.
+
 ### 1D Stokes' second problem
 As an example, a complete pipeline is shown for the 1D time-varying PDE with Dirichlet boundary condition in the attached `examples_1d_multi_step.ipynb` notebook.
 
-### lid-Cavity (Navier Stokes)
+![Image](resources/stokes.png)
+
+### lid-Cavity flow (Navier-Stokes)
 A complete pipeline is shown for the 2D time-varying PDE with Dirichlet boundary condition in the attached `examples_3d_multi_step.ipynb` notebook.
+
+https://user-images.githubusercontent.com/19197210/217733438-211a4499-d2b3-4830-8bba-2d3d7ad5dfb3.mp4
+
+
+
+
+https://user-images.githubusercontent.com/19197210/217733831-9d9336a3-6709-40f3-b326-716ab98a6d30.mp4
+
+
 
 ## Citation
 If you use this code, or our work, please cite:
