@@ -2,7 +2,7 @@
 
 ![Image](resources/operator_bdy.png)
 
-[Nadim Saad*](https://profiles.stanford.edu/nadim-saad), [Gaurav Gupta*](http://guptagaurav.me/index.html), [Shima Alizadeh](https://scholar.google.com/citations?user=r3qS03kAAAAJ&hl=en), [Danielle C. Maddix](https://scholar.google.com/citations?user=IPDByA8AAAAJ&hl=en)\
+[Nadim Saad*](https://profiles.stanford.edu/nadim-saad), [Gaurav Gupta*](http://guptagaurav.me/index.html), [Shima Alizadeh](https://scholar.google.com/citations?user=r3qS03kAAAAJ&hl=en), [Danielle C. Maddix](https://dcmaddix.github.io/)\
 **Guiding continuous operator learning through Physics-based boundary constraints,**\
 [International Conference on Learning Representations](https://openreview.net/forum?id=gfWNItGOES6), 2023\
 (*equal contribution authors)
