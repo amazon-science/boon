@@ -356,7 +356,7 @@ class DataDownloader():
     def download(self, id, tag=None):
         if id not in self.dir_id:
             assert 0, "Data ID not present in the repo. Check again! Supported ones are " \
-                        f"[{','.join(self.dir_id.keys())}]"
+                f"[{','.join(self.dir_id.keys())}]"
             
         if tag is None:
             gdown.download_folder(id=self.dir_id[id], output=os.path.join(self.output, id), quiet=self.quiet)
