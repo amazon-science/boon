@@ -2,6 +2,10 @@ import torch
 import numpy as np
 import scipy.io
 import h5py
+import gdown
+import glob
+import os
+from scipy.io import loadmat
 import torch.nn as nn
 
 import operator
@@ -325,3 +329,92 @@ def count_params(model):
         c += reduce(operator.mul, 
                     list(p.size()+(2,) if p.is_complex() else p.size()))
     return c
+
+
+class DataDownloader():
+    dir_id = {
+        "Heat_Neu_1D":"1xIe-lPFk7z91CeEZtSuD47H7ajxaJC2j",
+        "Burgers_Per_1D":"1wr1rUpT4jSYJNEk81mK4elm5BzihIQ3b",
+        "Burgers_Dir_1D":"1Ehxxj6751AzQChF6gh3TggCtWSPRLPOT",
+        "Stokes_Dir_1D":"1ILpBKD__iddtm-CEp2j_UqjXkcM3vOXT",
+        "Heat_Neu_2D":"1UwNzd40DiStP0GNn9VO0yytMDxQEc1y3",
+        "Burgers_Per_2D":"1Wvnx-8_MJG9bUhrNnMQfOZsdkiro2x1v",
+        "Burgers_Dir_2D":"1v4J5T2OAFgPOjEawqIyUqZVsISBZwfSg",
+        "Stokes_Dir_2D":"1XdKe_4_TeEpoF3kYMDRC1-osDALg7D-N",
+        "NV_Dir_3D":"125T9UvHIgmvabtxDy2a1hqXA1AwFREdv",
+        "Wave_Neu_3D":"1JFlvlVpFAvRSx-RMbzTm6F2NvitNQtY5",
+        }
+    
+    def __init__(
+        self,
+        output = 'Data',
+        quiet = False,
+        ):
+        self.output = output
+        self.quiet = quiet
+        
+    def download(self, id, tag=None):
+        if id not in self.dir_id:
+            assert 0, "Data ID not present in the repo. Check again! Supported ones are " \
+                        f"[{','.join(self.dir_id.keys())}]"
+            
+        if tag is None:
+            gdown.download_folder(id=self.dir_id[id], output=os.path.join(self.output, id), quiet=self.quiet)
+        else:
+            id_and_names = self.dir_list(self.dir_id[id])
+            located = False
+            for child_id, child_name, child_type in id_and_names:
+                if tag in child_name:
+                    located=True
+                    break
+            if located:
+                parent = os.path.join(self.output, id)
+                if not os.path.exists(parent):
+                    os.makedirs(parent)
+                gdown.download(id=child_id, output=os.path.join(parent, child_name), quiet=self.quiet)
+            else:
+                assert 0, f"Provided tag:{tag} not present in the {id}"
+                
+
+    def locate(self, id, tag):
+        files = glob.glob(os.path.join(self.output, id, '*.mat'))
+        located = False
+        for file in files:
+            if tag in file:
+                located = True
+                break
+        if located:
+            return loadmat(file)
+        else:
+            assert 0, f"No file found with tag: {tag}."
+            
+
+    def dir_list(self, id):
+        from gdown.download_folder import _parse_google_drive_file, _get_session
+        
+        url = "https://drive.google.com/drive/folders/{id}".format(id=id)
+        sess = _get_session(proxy=None, use_cookies=True)
+        # canonicalize the language into English
+
+        if "?" in url:
+            url += "&hl=en"
+        else:
+            url += "?hl=en"
+
+        try:
+            res = sess.get(url, verify=True)
+        except requests.exceptions.ProxyError as e:
+            print(
+                "An error has occurred using proxy:", sess.proxies, file=sys.stderr
+            )
+            print(e, file=sys.stderr)
+            return None
+
+        if res.status_code != 200:
+            return None
+
+        gdrive_file, id_name_type_iter = _parse_google_drive_file(
+            url=url,
+            content=res.text,
+        )
+        return id_name_type_iter
